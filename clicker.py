@@ -1,4 +1,6 @@
-import tkinter as tk 
+from cgitb import text
+import tkinter as tk
+from turtle import down 
 
 
 # Maak een programmatje met een GUI van 2 buttons met daartussen een label.
@@ -10,15 +12,28 @@ import tkinter as tk
 # Als het nummer kleiner dan 0 is moet de achtergrond rood zijn.
 # Als het nummer groter dan 0 is moet de achtergrond groen zijn
 
+
 opteller = [0]
 
-def opteller_up(opteller):
-    up_teller = len(opteller)
+def optellen_up(opteller):
     opteller[0] = opteller[0] + 1
     teller.configure(text=opteller[0])
 
-    up_teller = len(opteller)
-    if up_teller > 0:
+    opteller_up = opteller[0]
+    if opteller_up > 0:
+        clicker.configure(bg="green")
+    if opteller_up < 0:
+        clicker.configure(bg="red")
+
+
+def afteller_down(opteller):
+    opteller[0] = opteller[0] - 1
+    teller.configure(text=opteller[0])
+    opteller_up = opteller[0]
+    
+    if opteller_up > 0:
+        clicker.configure(bg="green")
+    if opteller_up < 0:
         clicker.configure(bg="red")
 
     
@@ -29,14 +44,19 @@ clicker.title("place() methode")
 clicker.geometry("300x300")
 clicker.configure(bg="grey")
 
-button_up=tk.Button(clicker, text="UP",padx=80,pady=2,command=lambda:opteller_up(opteller))
+button_up=tk.Button(clicker, text="UP",padx=80,pady=2,command=lambda:optellen_up(opteller))
 button_up.place(x=60, 
-                y=60,)
+                y=40,)
+
+button_down=tk.Button(clicker, text="down",padx=80,pady=2,command=lambda:afteller_down(opteller))
+button_down.place(x=50, 
+                  y=220,)                
 
 teller = tk.Label(clicker,bg="white",text=opteller,padx=85,pady=2)
 teller.place(relx = 0.5,
-            rely = 0.5,
-            anchor = 'center')
+             rely = 0.5,
+             anchor = 'center')
+
 
 
 clicker.mainloop()
